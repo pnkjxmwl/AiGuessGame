@@ -27,7 +27,7 @@ const Result =({resultMessage,images,setResultMessage,play,score})=>{
                 key={index}
               >
                 <img
-                  src={`data:image/png;base64,${image.code}`}
+                  src={image.url}
                   key={index}
                   alt="winner"
                   style={{ width: "250px", margin: "10px" }}
