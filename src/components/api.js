@@ -1,19 +1,26 @@
 import axios from "axios";
 const key = process.env.REACT_APP_UNSPASH_KEY;
 
+
 export const getAIImage = async (search) => {
   return new Promise(async (resolve, reject) => {
-    
+    console.log("search", search);
     let searchTerm = search.isPhoto
-      ? "Photo of " + search.type
-      : search.type;
-   
-      const result = await axios.post('https://tidy-drinks-shout-34-124-200-235.loca.lt/text2img',{
-        prompt:searchTerm
-      }); 
-      const aiimg=result.data
-     
-     resolve(aiimg);
+      ? "Photo of " + search.detail
+      : search.detail;
+    console.log("searchTerm", searchTerm);
+
+    const url = `https://lexica.art/api/v1/search?q=${searchTerm}`;
+
+    const response = await fetch(url);
+    const data = await response.json();
+
+    const images = data.images;
+    // filter nsfw images
+    const filteredImages = images.filter((img) => !img.nsfw);
+    console.log("ai images", filteredImages);
+
+    resolve(filteredImages);
   });
 };
 

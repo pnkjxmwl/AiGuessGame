@@ -48,7 +48,8 @@ const App = () => {
 
   const createImgArray = (normalImages, aiImages) => {
     
-    let randomAIImage = aiImages;
+    let randomIndex = Math.floor(Math.random() * aiImages.length);
+    let randomAIImage = aiImages[randomIndex];
 
     let normalImgs = [];
     for (let i = 0; i < 5; i++) {
@@ -59,18 +60,17 @@ const App = () => {
         normalImgs.push(randomNormalImage);
       }
     }
-
+    const imageSmall = randomAIImage.srcSmall;
     let imgArr = normalImgs.map((img) => {
       return {
         url: img.urls.small,
         isAI: false,
       };
     });
-    console.log( randomAIImage.images[0]);
+    
     imgArr.push({
-      code: randomAIImage.images[0],
+      url:imageSmall,
       isAI: true,
-      url:""
     });
     imgArr = imgArr.sort(() => Math.random() - 0.5);
 

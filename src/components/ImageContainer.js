@@ -38,7 +38,7 @@ const ImageContainer=({loading,images,aiImgOpacity,realImgOpacity,setRealImgOpac
             {images.map((image, index) => (
                  
               <img
-                src= { image.url.length===0 ? `data:image/png;base64,${image.code}` : image.url }
+                src= { image.url }
                 key={index}
                 alt="logo"
                 style={{
